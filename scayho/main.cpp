@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <limits.h>
 #include <unistd.h>
 #include <sys/time.h>
 // #include "mlx.h"
@@ -9,6 +10,11 @@
 #define TILE 5
 int WIDTH = 100;
 int HEITH = 100;
+class TCGA{
+    protected :
+    public :
+} ;
+
 std::vector<std::vector<int> >  cells(HEITH, std::vector<int>(WIDTH, 0));
 std::vector<std::vector<int> >  clone_cells(HEITH, std::vector<int>(WIDTH, 0));
 mlx_t *mlx;
@@ -114,8 +120,10 @@ void draw_map(mlx_image_t *mlx_img)
 void    draw_a_cell(int x, int y, mlx_image_t *mlx_img)
 {
     // std::cout << x << " | " << y << std::endl;
+    // unsigned int color = create_trgb(rand(),rand(),rand(),rand());
     for(int i = 0; i < TILE;i++)
         for(int j = 0; j < TILE;j++)
+            // mlx_put_pixel(mlx_img, i + x, j + y, (int)color);
             mlx_put_pixel(mlx_img, i + x, j + y, create_trgb(0,255,0,255));
             // mlx_put_pixel(mlx_img, i, j, create_trgb(0,255,0,255));
             // mlx_put_pixel(mlx_img, i, j, create_trgb(255, 255, 255, 255));
@@ -214,7 +222,7 @@ void frame(void *h)
     update_map();
     // exit(0);
     mlx_image_to_window(mlx, mlx_img, 0, 0);
-    usleep(5000);
+    usleep(50000);
     // usleep(500000);
 }
 
@@ -226,17 +234,96 @@ void close_window(mlx_key_data_t key, void* param)
 }
 void    generate_still_lifes()
 {
-    // draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
-    // draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
-    // draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
-    // draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
-    // draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
-    // draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
     draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
     draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
     draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
     draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
     draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_block((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_beehive((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_loaf((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_boat((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_tub((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_Glider((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
+    draw_a_line((rand() % (WIDTH - 5)), (rand() % (HEITH - 5)), mlx_img);
 }
 
 int main(int ac, char **av)
