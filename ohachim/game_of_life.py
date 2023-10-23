@@ -1,6 +1,15 @@
 # Example file showing a basic pygame "game loop"
 import pygame
 import sys
+# CONFIG
+
+HEIGHT = 1800
+WIDTH = 1000
+WAIT_TIME = 200
+SPEED = 100
+ZOOM = 1
+STEP = 8
+#####
 
 def cells_gen(filename):
     file1 = open(filename, 'r')
@@ -50,48 +59,72 @@ def apply_rules(cell_array):
                 cell_array_dup[nx][ny] = False
     return cell_array_dup
 
-cells = cells_gen('glider.cells')
+def paused():
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    return True
+
+cells = cells_gen(sys.argv[1])
+# print()
+# sys.exit()
 # pygame setup
-HEIGHT = 1000
-WIDTH = 1000
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
-step = 20
-cell_array = [[False for x in range(WIDTH // step)] for y in range(HEIGHT // step)]
-cell_array[20][20] = True
-cell_array[19][19] = True
-cell_array[19][21] = True
-cell_array[21][20] = True
+cell_array = [[False for x in range(200)] for y in range(200)]
+print("dimensions: ", len(cell_array), len(cell_array[0]))
+# sys.exit()
 map_cells_to_cell_array(cell_array, cells, 30, 10)
-print(survive_rule(cell_array, 21, 20), "livelve")
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_p:
+                running = paused()
+            elif event.key == pygame.K_LEFT:
+                SPEED = SPEED + 100 if SPEED < 1200 else SPEED
+            elif event.key == pygame.K_RIGHT:
+                SPEED = SPEED - 100 if SPEED > 0 else SPEED
+                print(SPEED, "what speed")
+            elif event.key == pygame.K_o:
+                STEP -= 1
+            elif event.key == pygame.K_i:
+                STEP += 1
 
 
-    screen.fill((65, 62, 67))
+
+    screen.fill((180, 190, 185))
     ys = 0
     xs = 0
     for row in range(len(cell_array)):
+        sr = 0
+        sc = 0
         for col in range(len(cell_array[0])):
             if (cell_array[row][col]):
-                pygame.draw.rect(screen, "teal", [col * step, row * step, step, step])
+                if not (row % (STEP * 5)):
+                    sr = 1
+                if not (col % (STEP * 5)):
+                    sc = 1
+                pygame.draw.rect(screen, "yellow", [col * STEP + 1, row * STEP + 1, STEP, STEP])
     while (ys < HEIGHT or xs < WIDTH):
-        if (ys % 50):
+        if (ys % (STEP * 5)):
             w = 1
         else:
-            w = 2
+            w = 1# 2
         if (ys < HEIGHT):
             pygame.draw.line(screen, (220, 220, 220), (0, ys), (WIDTH, ys), w)
         if (xs < WIDTH):
             pygame.draw.line(screen, (220, 220, 220), (xs, 0), (xs, HEIGHT), w)
-        ys += step
-        xs += step
+        ys += STEP
+        xs += STEP
     # sys.exit()
 
 
@@ -101,9 +134,9 @@ while running:
 
     # flip() the display to put your work on screen
     pygame.display.flip()
-    pygame.time.wait(500)
+    pygame.time.wait(SPEED)
     cell_array = apply_rules(cell_array)
 
-    clock.tick(60)  # limits FPS to 60
+    clock.tick(60)  # limits FPS to 24
 
 pygame.quit()
