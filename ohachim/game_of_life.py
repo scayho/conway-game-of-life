@@ -3,10 +3,10 @@ import pygame
 import sys
 # CONFIG
 
-HEIGHT = 1800
-WIDTH = 1000
+HEIGHT = 480
+WIDTH = 720
 WAIT_TIME = 200
-SPEED = 100
+SPEED = 150
 ZOOM = 1
 STEP = 8
 #####
@@ -76,10 +76,11 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
-cell_array = [[False for x in range(200)] for y in range(200)]
+cell_array = [[False for x in range(100)] for y in range(100)]
 print("dimensions: ", len(cell_array), len(cell_array[0]))
 # sys.exit()
-map_cells_to_cell_array(cell_array, cells, 30, 10)
+map_cells_to_cell_array(cell_array, cells, 10, 10)
+pause = True
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -93,7 +94,6 @@ while running:
                 SPEED = SPEED + 100 if SPEED < 1200 else SPEED
             elif event.key == pygame.K_RIGHT:
                 SPEED = SPEED - 100 if SPEED > 0 else SPEED
-                print(SPEED, "what speed")
             elif event.key == pygame.K_o:
                 STEP -= 1
             elif event.key == pygame.K_i:
@@ -137,6 +137,6 @@ while running:
     pygame.time.wait(SPEED)
     cell_array = apply_rules(cell_array)
 
-    clock.tick(60)  # limits FPS to 24
+    clock.tick(24)  # limits FPS to 24
 
 pygame.quit()
